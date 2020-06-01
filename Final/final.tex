@@ -1,0 +1,123 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage{comment} % enables the use of multi-line comments (\ifx \fi)  
+\usepackage{fullpage} % changes the margin
+\usepackage{mathtools} %allows us to write complex equations
+\usepackage{graphicx} %allows us to add pictures
+\usepackage{amsmath} %allows us to add Greek letters and equations
+\usepackage{amssymb}
+\usepackage{float} %formatting pictures
+\usepackage{afterpage}
+\usepackage{tikz}
+\usepackage{minted}
+\usepackage{filecontents,listings,varwidth}
+\usetikzlibrary{automata, positioning, arrows}
+\tikzset{->,>=stealth',node distance=3cm}
+
+\begin{document}
+\noindent
+\large\textbf{Final Exam} \hfill \\
+\large{Mike Gao} \\
+\normalsize 260915701 \\
+Prof. Prakash Panangaden \hfill 
+
+
+\section*{Question 1}
+$\epsilon + (b^*ba)^*b^*b$
+
+\section*{Question 2}
+Minimize the dfa and check if it only has one state. If yes, check whether the state is accepting, if yes, then it accepts $\Sigma^*$
+
+\section*{Question 3}
+\subsection*{3.1}
+Decidable. Since the intersection of a context free language and a regular language is context free, and we can build context-free grammar from the language. For a given CFG $G$, checking whether L(G) is empty or not is decidable.
+\subsection*{3.2}
+It is a well known problem that $L=\Sigma^*$ is undecidable. We combine the PDA of L and DFA of R to create a new PDA. Because of the CFL-PDA equivalence, it is undecidable whether $L \cap R = \Sigma^*$.
+\section*{Question 4}
+Context free but not regular.
+
+\noindent The following grammar generates it:
+
+$S \rightarrow aSc | T | \epsilon$  $T \rightarrow bTc | \epsilon$
+
+\noindent Thus it is context free. Now we need to prove that it is not regular:
+
+\noindent Regular languages are closed under intersection. We intersect L with another regular language, we get $L \cap \{b^*c^*\} = \{b^mc^m\} $ which is not regular. According to the closure property of regular language, we get $L$ is not regular language as well.
+
+\section*{Question 5}
+\subsection*{5.1}
+Suppose you have an input on which M does not halt. This detection algorithm will run forever. Therefore it is undecidable.
+\subsection*{5.2}
+Consider the following set $\overline {H_{TM}}=\{<M,w> | $M does not halt on w$\}$ Such set is non-CE as we mentioned in class. 
+We do a reduction $\overline {H_{TM}} \leq_m  FIN$
+
+Construct a new turing machine $M'$ with input x, and let l be length of x. 
+
+We run w on M for $l$ steps.
+
+There are two cases: $(\overline{H_{TM}})$ If M does not halt during the $l$ steps, nothing is accepted. So $M'=nil\in FIN$
+
+$(H_{TM})$ If M halts, all strings x with length $\geq l$ will be accepted by $M'$, which means $M'$ accepts infinitely many strings, so $M' \notin FIN$
+
+We know that $\overline {H_{TM}}$ is non-CE, then $FIN$ is non-CE as well.
+
+
+\section*{Question 6}
+\subsection*{6.1}
+Decidable. Whether a regular language is co-finite is decidable. The regular languages are closed under complement so this is essentially asking whether regular language is finite, which is decidable.
+\subsection*{6.2}
+Not decidable. We know that a set of invalid computations is a CFL. Such set is co-finite iff the Turing machine can only accept a finite set. Since it is undecidable to determine whether a given Turing machine accepts a finite or infinite number of inputs (Corollary from Rice's theorem), the statement is undecidable as well.
+
+\subsection*{6.3}
+Not decidable by Rice's Theorem.
+
+\section*{Question 7}
+\subsection*{7.1}
+True
+\subsection*{7.2}
+True
+\subsection*{7.3}
+True
+\subsection*{7.4}
+True
+\subsection*{7.5}
+False
+\newpage
+\section*{Honor Code}
+\noindent I solemnly swear that I am up to no mischief. I did not consult
+anyone nor did I use the internet to search for answers to these
+questions
+
+\begin{filecontents*}{prakash.txt}
+##################################################################
+##################################################################
+###########################%%%%##########((#(((###################
+######################%%%%%#(((////////(((###(((##################
+###################%%&%%%#((///////////////((((#((((((############
+####(((((#(########%&&%##(//////**********///(((((((((####((((####
+#(((((((((((((((#%%%&&%##(//***/************///((/(((((((((((((#(#
+(((((((((((((((#%%%%%&%##(//******,,,,,,,***/////(/(((((((((((((((
+(((((((((((((((##%%%%%%##(//******,,,,,,,***/////(((((((((((((((((
+(((((((((((((((%%%%%%%%#((/*****,,,,,,,,,**////////(((((((((((((((
+(((((((((((((%%%&&&%%%%##((((/***,,*,*****////////(/((((((((((((((
+(((((((((((((####%&&%%&%#(//###(/***//(/***//((/%%/*//((((((((((((
+((((((((((((/####&%%(#%%##%(((#%#**#(//(&&*###(##/****((((((((((((
+(((((((((((//(%##&&%#((/(/////##(***#*****/////((****/((((((((((((
+((((((((((////(##%&%%#(//***/%%(/***/*,/((//***(/*/*//((((((((((((
+((((((((////////##&&%#(//*(#%##(/******/(*,,**//**//////((((((((((
+((((//////////////#&%##((((#%###((//**/**////////*/////////(((((((
+((/////////////////&%%#(/(#%&%#((////((/*/*////***////////////((((
+///////////////////@&%%%(#(((#(((((//////////*********////////((((
+/////////////////@@@%%&%%%#(((//*****////((#************///////(((
+/////////////**#@@@@@%%%&&&%#(//((////(%((&@&#***********/////////
+/////////*(&@@@@@@@@@@%%%%%%%%%%%###((((/(@@@&%**********/////////
+/////%&%@@@@@@@@@@@@@@@%###(#%#((////((///@%&&@&&&%%%/****////////
+(&&#%&&&&%&%&@@&@@@@@@@@&#(//((((////(////@&@@@&@%%&&&%%%%%///////
+&&&&&&%#%&@&%@@&&&&&@@&@&&&#(/////////#**#&%&@@@&@&&&&&&&@&&&&#%//
+@@&&&@@%&@&&&@@@&@&%&@@%@@&@&/**********(&&&&&&@%&&&%&&&&@&&&&&#%&
+&@&&&&@@%&@&@@@@@&&#&&&@@@@@@@@%(******(&&&&%&@@&#%&%&%%&@@&@&&#&&
+@@@&&&@@&%@@&%@@&&%%%%&&&&#%%&(@@@@(,*(%&%%@%%%%%&@&%&&&&@&%&&&#&&
+\end{filecontents*}
+
+\noindent\lstinputlisting[basicstyle=\ttfamily]{prakash.txt}
+
+\end{document}
